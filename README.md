@@ -1,7 +1,6 @@
 # KaKaoTalk Chat Bot Project
 
 
-#### 
 
 <br><br>
 
@@ -18,4 +17,4 @@ https://play.google.com/store/apps/details?id=com.xfl.msgbot <br>
 ## 2. 봇 목록
 
 + Nexon Game :: Kartradir 클럽에서 사용할 수 있는 ai 봇 
-  + 친선 멤버 모집 봇
+  + 친선 멤버 모집 봇 (<a href="https://github.com/Potato-Y/My-Project/blob/KakaoTalk-Chat-Bot/KartRider/friendly%20match.js">여기</a>)
