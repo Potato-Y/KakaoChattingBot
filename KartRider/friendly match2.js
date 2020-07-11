@@ -5,10 +5,10 @@
 
 let teamList=[]; //앞 : 톡방 이름, 뒤 : 참가자 이름
 var roomNumber;
-let i[]; 
+let i=[]; 
 var search;
 var allsee="\u200b".repeat(500);
-var version="2.0 beta";
+var version="2.0 beta 0004";
 
 function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName, threadId){
 	msg=msg.trim();
