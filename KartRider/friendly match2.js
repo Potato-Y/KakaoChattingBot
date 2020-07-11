@@ -3,12 +3,12 @@
  */
 
 
-let teamList=[][]; //앞 : 톡방 이름, 뒤 : 참가자 이름
-var boxNumber;
+let teamList=[]; //앞 : 톡방 이름, 뒤 : 참가자 이름
+var roomNumber;
 let i[]; 
 var search;
 var allsee="\u200b".repeat(500);
-var version="2.0";
+var version="2.0 beta";
 
 function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName, threadId){
 	msg=msg.trim();
@@ -27,31 +27,32 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 	}
 	if(msg.indexOf("!친선")!=-1||msg.indexOf("!ㅊㅅ")!=-1){
 		newBoxSearch();
-		teamList[boxNumber][0] = room;
-		i[boxNumber] = 1;
-		teamList[boxNumber][i[boxNumber]] = sender;
-		i[boxNumber]++; //i[]=2
+		teamList[roomNumber]=[];
+		teamList[roomNumber][0] = room;
+		i[roomNumber] = 1;
+		teamList[roomNumber][i[roomNumber]] = sender;
+		i[roomNumber]++; //i[]=2
 	}
 	
 	if(msg=="!취소"){
 		searchBoxNumber();
-		teamList[boxNumber][1] = '없음';
+		teamList[roomNumber][1] = '없음';
 		replier.reply("친선 모집이 취소되었습니다.");
 	}
 	
 	if(msg.indexOf("rr")!=-1||msg.indexOf("ㄱㄱ")!=-1||msg.indexOf("go")!=-1||msg.indexOf("rs")!=-1||msg.indexOf("ㄱㄴ")!=-1){
 		searchBoxNumber();
-		teamList[boxNumber][i[boxNumber]] = sender; //2번째 멤버 = i[3] 
+		teamList[roomNumber][i[roomNumber]] = sender; //2번째 멤버 = i[3] 
 		replier.reply(sender+"님 🗳"); 
-		i[boxNumber]++;
-		if(i[boxNumber]==5){
+		i[roomNumber]++;
+		if(i[roomNumber]==5){
 			printTeam();
 		}
 	}
 	
 	if(msg=="!목록"||msg=="!ㅁㄹ"){
 		searchBoxNumber();
-		if(teamList[boxNumber][2]==null||teamList[boxNumber][2]==undefined){
+		if(teamList[roomNumber][2]==null||teamList[roomNumber][2]==undefined){
 			replier.reply("🗒 모집중인 친선 멤버가 없습니다.");
 		}
 		else{
@@ -62,12 +63,12 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 	
 	if(msg=="!친선취소"){
 		searchBoxNumber();
-		if(teamList[boxNumber][2]==null||teamList[boxNumber][2]==undefined){
+		if(teamList[roomNumber]==null||teamList[roomNumber]==undefined){
 			replier.reply("🗒 모집중인 친선팟이 없습니다.");
 		}
 		else{
 			for(s=0;s<5;s++){
-				teamList[boxNumber][s]=null;
+				teamList[roomNumber][s]=null;
 			}
 			replier.reply("🗒 삭제했습니다.");
 		}
@@ -75,9 +76,10 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 	
 	function newBoxSearch(){
 		search=0;
+		replier.reply("방 번호는 "+search+"입니다.");
 		while(search==(teamList.length+1)){
-			if(teamList[search][0]==undefined||teamList[search][0]==null){
-				boxNumber=search;
+			if(teamList[search]==undefined||teamList[search]==null){
+				roomNumber=search;
 				break;
 			}
 			search++;
@@ -86,8 +88,9 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 	
 	function searchBoxNumber(){
 		search=0;
+		replier.reply("방 번호는 "+search+"입니다.");
 		while(search==(teamList.length+1)){
-			if(teamList[search][0]==room){
+			if(teamList[search]==room){
 				boxNumber=search;
 				break;
 			}
