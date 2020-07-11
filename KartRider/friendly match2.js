@@ -3,12 +3,12 @@
  */
 
 
-let teamList=[]; 
+var teamList=[]; 
 var roomNumber;
-let i=[]; 
+var i=[]; 
 var search;
 var allsee="\u200b".repeat(500);
-var version="2.0 beta build 0007";
+var version="2.0 beta build 0008";
 
 function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName, threadId){
 	/*
