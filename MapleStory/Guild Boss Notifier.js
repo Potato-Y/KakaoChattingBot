@@ -2,7 +2,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
 	msg=msg.trim();
 	sender=sender.trim();
 	room=room.trim();
-	var c;
+	var c=0;
 	if(msg=="on"){
 		if(room=="길드 방 이름"){ //필요시 없애도 됨
 			replier.reply("길보 알리미 서비스를 시작합니다.");
