@@ -13,15 +13,16 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
 				if(c==0){
 					replier.reply("길보돌 시간입니다");
 					c++;
-					}
-				if(time.getHours()==13||time.getHours()==21){
+				}
+				
+			}
+			if(time.getHours()==13||time.getHours()==21){
 					if(c==1){
 						replier.reply("길보 종료 시간입니다");
 						c++;
 						c=0;
 					}
 				}
-			}
 		}
 	}
 }
