@@ -2,13 +2,12 @@
  * 제작 : 체크메이트 소속 :: 갈수록퇴화 (KartRider nickname) 
  */
 
-
-var teamList=[]; 
-var roomNumber;
-var i=[]; 
-var search;
-var allsee="\u200b".repeat(500);
-var version="2.0 beta build 0008";
+let teamList=[]; 
+let roomNumber;
+let i=[]; 
+let search;
+const allsee="\u200b".repeat(500);
+const version="2.0 beta build 0009";
 
 function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName, threadId){
 	/*
@@ -19,7 +18,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 	  !친선, !ㅊㅅ : 대화 내용중에 해당 문구가 있으면 친선 멤버 모집을 시작합니다.\n\n
 	  !친선취소 : 친선 멤버 모집을 취소합니다.\n\n
 	  ㄱㄱ,ㄱㄴ,고고,go : 친선 모집에 참여합니다.\n\n\n\n
-	  version = "+version);
+	  bot version = "+version);
 	  
 	}
 	*/
@@ -50,7 +49,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 			teamList[roomNumber+i[roomNumber]]=sender;
 			i[roomNumber]++;
 			replier.reply(sender+"님 🗳");
-			if(i==5){
+			if(i[roomNuber]==5){
 				printTeamList();
 			}
 		}
