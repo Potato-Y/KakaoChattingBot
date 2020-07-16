@@ -25,6 +25,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
 						}
 					}
 				}
+				if(use==2){break;}
 			}
 		}
 		else if(use==1){
