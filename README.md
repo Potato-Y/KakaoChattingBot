@@ -11,3 +11,4 @@ https://play.google.com/store/apps/details?id=com.xfl.msgbot <br>
   + 친선 멤버 모집 봇 ver.2 beta (여러 톡방에서 사용 가능) (<a href="https://github.com/Potato-Y/KakaoChatBot/blob/master/KartRider/friendly%20match2.js">여기</a>)
 + Nexon Game :: MapleStory 톡방에서 사용할 수 있는 ai 봇
   + 길드 보스 시간 알리미 ver.1 (<a href="https://github.com/Potato-Y/KakaoChatBot/blob/master/MapleStory/Guild%20Boss%20Notifier.js">여기</a>)
+  + 원정 파티원 모집 (<a href="https://github.com/Potato-Y/KakaoChatBot/blob/master/MapleStory/party%20recruitment.js">여기</a>)
