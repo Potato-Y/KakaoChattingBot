@@ -5,10 +5,25 @@ let c;
 function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName, threadId){
 	
 	if(msg=="/방법"){
-		replier.reply("");
+		replier.reply(
+		"🖋 원정 파티원 모집 명령어\n\n"+"\u200b".repeat(500)+
+		"/원정: 원정을 시작합니다."+
+		"\n\n/생성(파티 제목): 파티를 생성합니다.\n"+
+		"ex) /생성30분에 하실분 혹은 /생성 30분에 하실분\n\n"+
+		"/참여(숫자) (할말): 해당 팀에 참여합니다.\n"+
+		"ex) /참여1 노여, /참여 1 노여\n\n"+
+		"/호스트참여(숫자) (할말): 해당 팀에 호스트로 참여합니다.\n"+
+		"ex) /호스트참여1 노여, /호스트참여 1 노여\n\n"+
+		"/취소(숫자): 해당 팀의 참여를 취소를 합니다.\n"+
+		"ex) /취소1, /취소2\n\n"+
+		"/삭제(숫자): 해당 팀을 삭제합니다.\n"+
+		"ex) /삭제1\n\n"+
+		"/원정끝, /원정 끝, /원정종료, /원정 종료: 원정 리스트를 초기화하고, 파티원 모집을 종료합니다.\n");
+		
 	}
 	
-	if(msg=="/원정"){
+	
+	if(msg=="/원정"&&run!=1){
 		replier.reply("🍀 원정 모집을 시작합니다! 🍀\n\n도움말: /방법");
 		run=1;
 	}
@@ -27,9 +42,9 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 				let name=sender.split('/');
 				replier.reply("["+roomNumber+"]번 "+"파티가 시작되었습니다🍀");
 				
-				SearchForASpecificRoom(roomNumber);
+				searchForASpecificRoom(roomNumber);
 			}catch(e){
-				replier.reply("오류가 발생하였습니다. 닉네임 확인 바람.");
+				replier.reply("💫 파티를 만들던 중 터졌어요!");
 			}
 		}
 		
@@ -53,16 +68,16 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 								saveText+=msgData[i2];
 							}
 							teamList[wantRoomNum][i]=name[0]+" "+saveText;
-							SearchForASpecificRoom(wantRoomNum);
+							searchForASpecificRoom(wantRoomNum);
 							break;
 						}
 					}
 					
 				}else{
-					replier.reply("파티 정보가 없습니다. 번호를 확인하세요.");
+					replier.reply("파티 정보가 없어요! 번호를 확인해 주세요 😓");
 				}
 			}catch(e){
-				replier.reply("오류가 발생하였습니다. 번호를 확인하세요.");
+				replier.reply("🤔 그 파티는 없는 것 같습니다.. 번호를 확인해 주세요!");
 			}
 		}
 		
@@ -85,15 +100,15 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 							saveText+=msgData[i2];
 						}
 						teamList[wantRoomNum][1]=name[0]+" "+saveText;
-						SearchForASpecificRoom(wantRoomNum);
+						searchForASpecificRoom(wantRoomNum);
 					}else{
-						replier.reply("이미 호스트가 있는지 확인하세요.");
+						replier.reply("🤯 이미 호스트가 있는지 확인해 주세요!");
 					}
 				}else{
-					replier.reply("파티 정보가 없습니다. 번호를 확인하세요.");
+					replier.reply("🤔 그 파티는 없는 것 같습니다.. 번호를 확인해 주세요!");
 				}
 			}catch(e){
-				replier.reply("오류. 번호를 확인하세요.");
+				replier.reply("🤔 그 파티는 없는 것 같습니다.. 번호를 확인해 주세요!");
 			}
 		}
 		
@@ -111,17 +126,17 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 							let getName = teamList[roomNumber][i].split(' ')[0];
 							if(getName==sender.split('/')[0]){
 								delete teamList[roomNumber][i];
-								SearchForASpecificRoom(roomNumber);
+								searchForASpecificRoom(roomNumber);
 								break;
 							}
 						}
 					}
 					
 				}catch(e){
-					replier.reply("취소중 오류가 발생하였습니다. 방 번호를 확인하세요.");
+					replier.reply("🤯 취소 중 오류가 발생하였습니다. 방 번호를 확인하세요.");
 				}
 			}else{
-				replier.reply("취소할 파티 번호를 입력하세요.");
+				replier.reply("🤔 취소할 파티 번호를 입력해 주세요!");
 			}
 		}
 		
@@ -143,19 +158,19 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 						replier.reply("["+roomNumber+"]번 파티를 확인할 수 없습니다.");
 					}
 				}catch(e){
-					replier.reply("해당 번호의 파티를 확인할 수 없습니다.");
+					replier.reply("🤯 해당 번호의 파티를 확인할 수 없습니다.");
 				}
 			}else{
-				replier.reply("번호를 입력하여 주십시오. ex)/삭제2");
+				replier.reply("🤔 번호를 입력해 주세요! ex)/삭제2");
 			}
 		}
 		
 		//원정 종료
-		if(msg=="/원정끝"||msg=="/원정 끝"){
+		if(msg=="/원정끝"||msg=="/원정 끝"||msg=="/원정종료"||msg=="/원정 종료"){
 			for(let i=0;i<=teamList.length;i++){
 				teamList.pop();
 			}
-			replier.reply("파티모집이 종료되어 초기화 되었습니다.");
+			replier.reply("🗑 파티모집이 종료되어 초기화 되었습니다.");
 			run=0;
 		}
 		
@@ -164,10 +179,21 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 			printTeamList();
 		}
 		
+		//특정 파티 목록 보기
+		if(msg.replace(/[0-9]/gi,"")=="/파티"){
+			let wantRoomNum=msg.replace(/[^0-9]/g,'')
+			try{
+				if(teamList[wantRoomNum][11]!=undefined){
+					searchForASpecificRoom(wantRoomNum);
+				}else{
+					replier.reply("🤔파티 번호를 확인하세요.");
+				}
+			}catch(e){
+				replier.reply("🤔 그 파티는 없는 것 같습니다.. 번호를 확인해 주세요!");
+			}
+		}
 	}
-	if(msg=="ㅅ"){
-		replier.reply(teamList[1][1]);
-	}
+	
 	
 	function printTeamList(){
 		if(teamList.length>0){
@@ -186,20 +212,20 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 						count++;
 					}
 				}catch(e){
-					replier.reply("오류가 발생하였습니다.");
+					replier.reply("🤯 오류가 발생하였습니다.");
 				}
 				
 			}
 			if(count==0){
-				replier.reply("현재 있는 파티가 없습니다.");
+				replier.reply("🤔 현재 있는 파티가 없는 것 같습니다.");
 			}
 		}	
 		else{
-		replier.reply("현재 있는 파티가 없습니다.");
+		replier.reply("🤔 현재 있는 파티가 없는 것 같습니다.");
 		}
 	}
 	
-	function SearchForASpecificRoom(c){
+	function searchForASpecificRoom(c){
 		try{
 			if(teamList[c][11]!=undefined){
 				postMsg="<"+c+"파티> "+teamList[c][0]+"\n"+"호스트 : "+teamList[c][1];
@@ -210,7 +236,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 				replier.reply(postMsg.replace(/undefined/g,""));
 			}
 		}catch(e){
-			replier.reply("오류가 발생하였습니다.");
+			replier.reply("🤯 팀 정보를 불러오던 중 오류가 발생하였습니다.");
 		}
 	}
 }
