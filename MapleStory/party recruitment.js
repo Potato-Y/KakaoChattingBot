@@ -8,7 +8,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 		replier.reply("");
 	}
 	
-	if(msg=="/원정"){
+	if(msg=="/원정"&&run!=1){
 		replier.reply("🍀 원정 모집을 시작합니다! 🍀\n\n도움말: /방법");
 		run=1;
 	}
@@ -27,7 +27,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 				let name=sender.split('/');
 				replier.reply("["+roomNumber+"]번 "+"파티가 시작되었습니다🍀");
 				
-				SearchForASpecificRoom(roomNumber);
+				searchForASpecificRoom(roomNumber);
 			}catch(e){
 				replier.reply("오류가 발생하였습니다. 닉네임 확인 바람.");
 			}
@@ -53,7 +53,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 								saveText+=msgData[i2];
 							}
 							teamList[wantRoomNum][i]=name[0]+" "+saveText;
-							SearchForASpecificRoom(wantRoomNum);
+							searchForASpecificRoom(wantRoomNum);
 							break;
 						}
 					}
@@ -85,7 +85,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 							saveText+=msgData[i2];
 						}
 						teamList[wantRoomNum][1]=name[0]+" "+saveText;
-						SearchForASpecificRoom(wantRoomNum);
+						searchForASpecificRoom(wantRoomNum);
 					}else{
 						replier.reply("이미 호스트가 있는지 확인하세요.");
 					}
@@ -111,7 +111,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 							let getName = teamList[roomNumber][i].split(' ')[0];
 							if(getName==sender.split('/')[0]){
 								delete teamList[roomNumber][i];
-								SearchForASpecificRoom(roomNumber);
+								searchForASpecificRoom(roomNumber);
 								break;
 							}
 						}
@@ -164,10 +164,21 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 			printTeamList();
 		}
 		
+		//특정 파티 목록 보기
+		if(msg.replace(/[0-9]/gi,"")=="/파티"){
+			let wantRoomNum=msg.replace(/[^0-9]/g,'')
+			try{
+				if(teamList[wantRoomNum][11]!=undefined){
+					searchForASpecificRoom(wantRoomNum);
+				}else{
+					replier.reply("파티 번호를 확인하세요.");
+				}
+			}catch(e){
+				replier.reply("오류가 발생했습니다. 파티 번호를 확인하세요.");
+			}
+		}
 	}
-	if(msg=="ㅅ"){
-		replier.reply(teamList[1][1]);
-	}
+	
 	
 	function printTeamList(){
 		if(teamList.length>0){
@@ -199,7 +210,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 		}
 	}
 	
-	function SearchForASpecificRoom(c){
+	function searchForASpecificRoom(c){
 		try{
 			if(teamList[c][11]!=undefined){
 				postMsg="<"+c+"파티> "+teamList[c][0]+"\n"+"호스트 : "+teamList[c][1];
