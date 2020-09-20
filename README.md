@@ -1,4 +1,6 @@
 # KakaoChatBot
+
+[위키 바로가기](https://github.com/Potato-Y/KakaoChattingBot/wiki)
 <br><br>
 ## 1. 간단한 사용 방법
 기본적으로 안드로이드 기기에서만 사용 가능 <br>
