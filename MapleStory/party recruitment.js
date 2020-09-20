@@ -1,6 +1,6 @@
 ///
 ///본 스크립트는 모바일 메이플스토리M에서 10명의 인원을 고정하고 사용할 경우 적용되는 스크립트입니다.
-///릴리즈 날짜 20200920 2242
+///릴리즈 날짜 20200920 2259
 ///
 
 ///
@@ -28,6 +28,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
         postMsg =
             "🖋 원정 파티원 모집 명령어\n\n" +
             "\u200b".repeat(500) +
+            "\n공식 Wiki : https://github.com/Potato-Y/KakaoChatBot/wiki" +
             "/원정: 원정을 시작합니다." +
             "\n\n/생성(파티 제목): 파티를 생성합니다.\n" +
             "ex) /생성30분에 하실분 혹은 /생성 30분에 하실분\n\n" +
