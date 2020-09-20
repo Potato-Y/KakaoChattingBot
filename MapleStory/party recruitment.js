@@ -1,6 +1,6 @@
 ///
 ///본 스크립트는 모바일 메이플스토리M에서 10명의 인원을 고정하고 사용할 경우 적용되는 스크립트입니다.
-///릴리즈 날짜 20200920 2113
+///릴리즈 날짜 20200920 2119
 ///
 
 ///
@@ -46,7 +46,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
 
             switch (addGuestPermissin) {
                 case 1:
-                    postMsg += "게스트 참여 권한 : 공개\n" + "ex) /게스트(파티 번호) (이름) (할말)\n\n";
+                    postMsg += "게스트 참여 권한 : 공개\n" + "명령어: /게스트(파티 번호) (이름) (할말)  ex)/게스트1 회원1 (할말)\n\n";
                     break;
                 case 0:
                     postMsg += "게스트 참여 권한 : 비공개\n\n";
@@ -54,7 +54,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
             }
             switch (rightToCancel) {
                 case 1:
-                    postMsg += "타인 취소 권한 : 공개\n" + "ex) /강제취소(파티 번호) (등록된 이름)\n\n";
+                    postMsg += "타인 취소 권한 : 공개\n" + "명령어: /강제취소(파티 번호) (등록된 이름)  ex)/강제취소1 회원1\n\n";
                     break;
                 case 0:
                     postMsg += "타인 취소 권한 : 비공개\n\n";
@@ -67,6 +67,13 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
                 case 0:
                     postMsg += "타인 파티 취소 권한 : 비공개\n\n";
                     break;
+            }
+            switch (partyNameEditPermission) {
+                case 1:
+                    postMsg += "타인이 생성한 파티 제목 수정 권한 : 공개\n" + "명령어: /(파티 번호)파티제목 (수정할 것)  ex)/1파티제목 30분 고고요";
+                    break;
+                case 0:
+                    postMsg += "타인이 생성한 파티 제목 수정 권한 : 비공개";
             }
 
             replier.reply(postMsg);
