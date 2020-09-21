@@ -1,6 +1,6 @@
 ///
 ///본 스크립트는 모바일 메이플스토리M에서 10명의 인원을 고정하고 사용할 경우 적용되는 스크립트입니다.
-///릴리즈 날짜 20200921 1741
+///릴리즈 날짜 20200922 0019
 ///
 
 ///
@@ -524,7 +524,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
         for (let i = 1; i < maxNumber + 1; i++) {
             if (teamList[roomNumber][i] != undefined) {
                 let getName = teamList[roomNumber][i].split(" ")[0];
-                if (getName == getMsg.replace("/강제취소", "").split(" ")[1]) {
+                if (getName == getMsg.split(" ")[1]) {
                     delete teamList[roomNumber][i];
                     searchForASpecificRoom(roomNumber);
                     break;
@@ -568,7 +568,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
                 for (let p = 2; p <= maxNumber; p++) {
                     postMsg += "\n" + p + ". " + teamList[c][p];
                 }
-                postMsg += "\n------------------------------------\n파티참여방법: (노여/하여),투력\n출발 2분 전까지 인겜 안오신 분은 멘션 부탁드립니다";
+                postMsg += "\n------------------------------------\n" + "명령어: /참여 파티번호 여제 투력\n" + "출발 2분 전까지 인겜\n" + "안오신 분은 멘션 부탁드립니다";
                 replier.reply(postMsg.replace(/undefined/g, ""));
             }
         } catch (e) {
@@ -593,21 +593,3 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
         }
     }
 }
-
-function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {}
-
-//아래 4개의 메소드는 액티비티 화면을 수정할때 사용됩니다.
-function onCreate(savedInstanceState, activity) {
-    var textView = new android.widget.TextView(activity);
-    textView.setText("준비중 입니다.");
-    textView.setTextColor(android.graphics.Color.WHITE);
-    activity.setContentView(textView);
-}
-
-function onStart(activity) {}
-
-function onResume(activity) {}
-
-function onPause(activity) {}
-
-function onStop(activity) {}
