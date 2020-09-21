@@ -1,6 +1,6 @@
 ///
 ///본 스크립트는 모바일 메이플스토리M에서 10명의 인원을 고정하고 사용할 경우 적용되는 스크립트입니다.
-///릴리즈 날짜 20200921 0009
+///릴리즈 날짜 20200921 1741
 ///
 
 ///
@@ -593,3 +593,21 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
         }
     }
 }
+
+function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {}
+
+//아래 4개의 메소드는 액티비티 화면을 수정할때 사용됩니다.
+function onCreate(savedInstanceState, activity) {
+    var textView = new android.widget.TextView(activity);
+    textView.setText("준비중 입니다.");
+    textView.setTextColor(android.graphics.Color.WHITE);
+    activity.setContentView(textView);
+}
+
+function onStart(activity) {}
+
+function onResume(activity) {}
+
+function onPause(activity) {}
+
+function onStop(activity) {}
