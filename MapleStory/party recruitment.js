@@ -1,6 +1,6 @@
 ///
 ///본 스크립트는 모바일 메이플스토리M에서 10명의 인원을 고정하고 사용할 경우 적용되는 스크립트입니다.
-///릴리즈 날짜 20200922 0135
+///릴리즈 날짜 20200922 0136
 ///
 
 ///
@@ -164,7 +164,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
                 }
                 let msgData = getMsg.split(" ");
                 let wantRoomNum = msgData[0].replace("/호스트참여", "");
-                let saveText;
+                let saveText = "";
                 if (teamList[wantRoomNum][maxNumber + 1] != undefined) {
                     if (teamList[wantRoomNum][1] == undefined) {
                         let name = sender.split("/");
