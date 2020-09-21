@@ -1,6 +1,6 @@
 ///
 ///본 스크립트는 모바일 메이플스토리M에서 10명의 인원을 고정하고 사용할 경우 적용되는 스크립트입니다.
-///릴리즈 날짜 20200922 0019
+///릴리즈 날짜 20200922 0135
 ///
 
 ///
@@ -216,8 +216,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
                     let roomNumber = getMsg.replace("/취소", "");
                     for (let i = 1; i < maxNumber + 1; i++) {
                         if (teamList[roomNumber][i] != undefined) {
-                            let getName = teamList[roomNumber][i].split(" ")[0];
-                            if (getName == sender.split("/")[0]) {
+                            if (teamList[roomNumber][i].split(" ")[0] == sender.split("/")[0]) {
                                 delete teamList[roomNumber][i];
                                 searchForASpecificRoom(roomNumber);
                                 break;
@@ -434,9 +433,9 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
         if (msg.indexOf("/게스트 ") != -1) {
             getMsg = msg.replace(" ", "");
         }
-        let msgData = getMsg.split(" ");
+        let msgData = getMsg.split(" "); //게스트1 ㅇㅇ
         let wantRoomNum = msgData[0].replace("/게스트", "");
-        let saveText;
+        let saveText = "";
         try {
             if (teamList[wantRoomNum][maxNumber + 1] != undefined) {
                 for (let i = 2; i < maxNumber + 1; i++) {
@@ -523,8 +522,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
         let roomNumber = getMsg.replace("/강제취소", "").split(" ")[0];
         for (let i = 1; i < maxNumber + 1; i++) {
             if (teamList[roomNumber][i] != undefined) {
-                let getName = teamList[roomNumber][i].split(" ")[0];
-                if (getName == getMsg.split(" ")[1]) {
+                if (teamList[roomNumber][i].split(" ")[0] == getMsg.split(" ")[1]) {
                     delete teamList[roomNumber][i];
                     searchForASpecificRoom(roomNumber);
                     break;
