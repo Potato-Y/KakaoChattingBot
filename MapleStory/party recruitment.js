@@ -1,6 +1,6 @@
 ///
 ///본 스크립트는 모바일 메이플스토리M에서 10명의 인원을 고정하고 사용할 경우 적용되는 스크립트입니다.
-///릴리즈 날짜 20200922 0139
+///릴리즈 날짜 20200922 2045
 ///
 
 ///
@@ -117,7 +117,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
                 }
                 let msgData = getMsg.split(" ");
                 let wantRoomNum = msgData[0].replace("/참여", "");
-                let saveText;
+                let saveText = "";
                 if (teamList[wantRoomNum][maxNumber + 1] != undefined) {
                     let name = sender.split("/");
                     for (let i = 2; i < maxNumber + 1; i++) {
@@ -164,7 +164,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
                 }
                 let msgData = getMsg.split(" ");
                 let wantRoomNum = msgData[0].replace("/호스트참여", "");
-                let saveText;
+                let saveText = "";
                 if (teamList[wantRoomNum][maxNumber + 1] != undefined) {
                     if (teamList[wantRoomNum][1] == undefined) {
                         let name = sender.split("/");
@@ -206,7 +206,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
         }
 
         //참여 취소
-        if (msg.indexOf("/취소") != -1) {
+        if (msg.indexOf("/취소") != -1 && msg != "/취소권한") {
             if (msg != "/취소") {
                 try {
                     let getMsg = msg;
@@ -271,7 +271,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
         }
 
         //파티 삭제
-        if (msg.indexOf("/삭제") != -1) {
+        if (msg.indexOf("/삭제") != -1 && msg != "/삭제권한") {
             if (msg != "/삭제") {
                 try {
                     let getMsg = msg;
@@ -493,7 +493,7 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
     function editPartyTitle() {
         let msgData = msg.split(" ");
         let wantRoomNum = msg.split(" ")[0].replace(/[^0-9]/g, "");
-        let saveText;
+        let saveText = "";
         try {
             if (teamList[wantRoomNum][maxNumber + 1] != undefined) {
                 for (let i2 = 1; i2 < msgData.length; i2++) {
@@ -591,3 +591,18 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
         }
     }
 }
+
+function onCreate(savedInstanceState, activity) {
+    var textView = new android.widget.TextView(activity);
+    textView.setText("준비중 입니다.");
+    textView.setTextColor(android.graphics.Color.WHITE);
+    activity.setContentView(textView);
+}
+
+function onStart(activity) {}
+
+function onResume(activity) {}
+
+function onPause(activity) {}
+
+function onStop(activity) {}
