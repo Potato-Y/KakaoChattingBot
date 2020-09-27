@@ -1,6 +1,6 @@
 ///
 ///본 스크립트는 모바일 메이플스토리M에서 10명의 인원을 고정하고 사용할 경우 적용되는 스크립트입니다.
-///릴리즈 날짜 20200922 2045
+///릴리즈 버전 0000006
 ///
 
 ///
@@ -438,18 +438,22 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
         let saveText = "";
         try {
             if (teamList[wantRoomNum][maxNumber + 1] != undefined) {
-                for (let i = 2; i < maxNumber + 1; i++) {
-                    if (teamList[wantRoomNum][i] == undefined) {
-                        for (let i2 = 1; i2 < msgData.length; i2++) {
-                            if (i2 == msgData.length - 1) {
-                                saveText += msgData[i2];
-                            } else {
-                                saveText += msgData[i2] + " ";
+                if (msgData[1] == "" || msgData[1] == undefined) {
+                    replier.reply("🤔 이름을 입력하셨나요?");
+                } else {
+                    for (let i = 2; i < maxNumber + 1; i++) {
+                        if (teamList[wantRoomNum][i] == undefined) {
+                            for (let i2 = 1; i2 < msgData.length; i2++) {
+                                if (i2 == msgData.length - 1) {
+                                    saveText += msgData[i2];
+                                } else {
+                                    saveText += msgData[i2] + " ";
+                                }
                             }
+                            teamList[wantRoomNum][i] = saveText;
+                            searchForASpecificRoom(wantRoomNum);
+                            break;
                         }
-                        teamList[wantRoomNum][i] = saveText;
-                        searchForASpecificRoom(wantRoomNum);
-                        break;
                     }
                 }
             } else {
@@ -472,15 +476,19 @@ function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName,
         let wantRoomNum = msgData[0].replace("/게스트호스트", "");
         if (teamList[wantRoomNum][maxNumber + 1] != undefined) {
             if (teamList[wantRoomNum][1] == undefined) {
-                for (let i2 = 1; i2 < msgData.length; i2++) {
-                    if (i2 == msgData.length - 1) {
-                        saveText += msgData[i2];
-                    } else {
-                        saveText += msgData[i2] + " ";
+                if (msgData[1] == "" || msgData[1] == undefined) {
+                    replier.reply("🤔 이름을 입력하셨나요?");
+                } else {
+                    for (let i2 = 1; i2 < msgData.length; i2++) {
+                        if (i2 == msgData.length - 1) {
+                            saveText += msgData[i2];
+                        } else {
+                            saveText += msgData[i2] + " ";
+                        }
                     }
+                    teamList[wantRoomNum][1] = saveText;
+                    searchForASpecificRoom(wantRoomNum);
                 }
-                teamList[wantRoomNum][1] = saveText;
-                searchForASpecificRoom(wantRoomNum);
             } else {
                 replier.reply("🤯 이미 호스트가 있는지 확인해 주세요!");
             }
